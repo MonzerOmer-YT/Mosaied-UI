@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background-color: #ffffff;
+    color: #000000;
+    justify-content: space-between;
+
+    height: 50px;
+    
+}
+
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+
+    position: relative;
+    
+}
