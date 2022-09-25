@@ -5,7 +5,6 @@ import "./home.css";
 
 let home = document.createDocumentFragment();
 
-let navbar = new Navbar()
 
 export default class HomePage {
     constructor() {
@@ -13,7 +12,7 @@ export default class HomePage {
     }
 
     render() {
-        home.appendChild(navbar.render({
+        home.appendChild(new Navbar().render({
             header: {
                 text: "Mosaied",
                 class: ["header"]
@@ -28,11 +27,14 @@ export default class HomePage {
         }))
 
         if (window.screen.width > 1000) {
-            new Sidebar({img: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wHgx?ver=5481", name: "Monzer Omer"}, "Admin")
+            let sidebar = new Sidebar({img: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wHgx?ver=5481", name: "Monzer Omer"}, "Admin")
             .addClass(["links", "sidebar"])
             .addProfile()
-            .addButton("Dashboard", "active", "/dashboard", ["link"])
-            .addButton("Home", "active", "/", ["link"])
+            .addButton("Dashboard", "active", ["link"])
+            .addButton("Home", "active", ["link"])
+            .render()
+
+            home.appendChild(sidebar)
         }
 
 

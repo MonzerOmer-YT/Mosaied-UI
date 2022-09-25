@@ -1,27 +1,33 @@
+import { changePage } from "../..";
 import "./sidebar.css";
 
 let sidebar = document.createElement("div");
 let sidebar_content = document.createDocumentFragment();
 
-export default class Sidebar{
-    constructor(profile, role){
+export default class Sidebar {
+    constructor(profile, role) {
         this.profile = profile;
         this.role = role;
     }
 
-    addClass(classValue){
-        sidebar.className += classValue;
+    addClass(classValue) {
+        sidebar.className = classValue.join(" ");
         return this;
     }
 
-    addProfile(){
+    addProfile() {
         this.profileImg = document.createElement("img");
         this.profileName = document.createElement("p");
         this.profileRole = document.createElement("span");
 
         this.profileImg.src = this.profile.img;
+        this.profileImg.alt = "Profile Image";
         this.profileName.innerText = this.profile.name;
         this.profileRole.innerText = this.role;
+
+        sidebar_content.appendChild(this.profileImg)
+        sidebar_content.appendChild(this.profileName)
+        sidebar_content.appendChild(this.profileRole)
 
         return this;
     }
@@ -34,14 +40,15 @@ export default class Sidebar{
      * @param {[String]} classes all the classes will be added to the button
      * @returns {Sidebar}
      */
-    addButton(value, state, url, classes){
-        this.btn = document.createElement("a");
-        this.btn.href = url;
-        this.btn.className = classes;
-        this.btn.className += state;
+    addButton(value, state, classes) {
+        this.btn = document.createElement("p");
+        this.btn.className = classes.join(" ");
+        this.btn.className += ` ${state}`;
         this.btn.innerText = value;
-
-        sidebar_content.appendChild(btn);
+        this.btn.onclick = (event) => {
+            changePage(value)
+        }
+        sidebar_content.appendChild(this.btn);
 
         return this;
     }
@@ -54,7 +61,7 @@ export default class Sidebar{
      * @param {[String]} ProductNameClasses the classes will be added to the product name
      * @return {Sidebar}
      */
-    addFooter(lineClasses, productName, ProductNameClasses){
+    addFooter(lineClasses, productName, ProductNameClasses) {
         this.line = document.createElement("hr");
         this.line.className = lineClasses;
 
@@ -62,6 +69,16 @@ export default class Sidebar{
         this.productMark.innerText = `${productName} ${new Date().getFullYear()}`;
         this.productMark.className = ProductNameClasses;
 
+        sidebar_content.appendChild(this.line)
+        sidebar_content.appendChild(this.productMark)
+
+
         return this;
+    }
+
+    render() {
+        sidebar.appendChild(sidebar_content)
+        return sidebar;
+
     }
 }
