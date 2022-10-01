@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosaied</title>
+    <link rel="stylesheet" href="./assets/main.css">
+    <link rel="stylesheet" href="./assets/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="app">
+        <div class="header">
+            <h1 class="product-name">Mosaied</h1>
+        </div>
+        <div class="page">
+            <div class="login-form">
+                <div class="error" id="error">
+                    <button class="close btn" onclick="closeError()">*</button>
+                    <p class="message">Sorry there's an error try again later</p>
+                </div>
+                <img src="./assets/monzeromer.jpg" alt="Monzer Omer" class="form-profile">
+                <div class="form-inputs">
+
+                    <div class="form-input">
+                        <p>Email:</p>
+                        <input type="email" id="email" placeholder="mosaied@example.com" required>
+                    </div>
+
+                    <div class="form-input">
+                        <p>Password:</p>
+                        <input type="password" id="password" placeholder="you sure you wanna login?">
+                    </div>
+
+                    <p class="forgotPassword">Forgot your password? <a href="/reset">Reset it</a></p>
+                    <div class="submit-input">
+                        <input type="submit" class="submit" value="Login" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+
+    <script>
+        let error_dilog = document.getElementById("error");
+        
+        function closeError(){
+            error_dilog.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
